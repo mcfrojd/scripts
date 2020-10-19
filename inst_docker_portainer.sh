@@ -3,117 +3,131 @@
 # Permit root login
 clear
 echo ""
-echo "Give Root login access"
+echo "01/11 - Give Root login access"
 echo ""
 sleep 2
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 echo ""
-echo "Give Root login access - successful"
+echo "01/11 - Give Root login access - successful"
+echo ""
 sleep 5
 
-# update and upgrade system
+# update system
 clear
 echo ""
-echo "Run apt update"
+echo "02/11 - Run apt update"
 echo ""
 sleep 2
 sudo apt update -y
 echo ""
-echo "Run apt update - successful"
+echo "02/11 - Run apt update - successful"
+echo ""
 sleep 5
 
+# upgrade system
 clear
 echo ""
-echo "Run apt upgrade"
+echo "03/11 - Run apt upgrade"
 echo ""
 sleep 2
 sudo apt upgrade -y
 echo ""
-echo "Run apt upgrade - successful"
+echo "03/11 - Run apt upgrade - successful"
+echo ""
 sleep 5
 
 # install docker
 clear
 echo ""
-echo "Install curl"
+echo "04/11 - Install curl"
 echo ""
 sleep 2
 sudo apt install curl -y
 echo ""
-echo "Install curl - successful"
+echo "04/11 - Install curl - successful"
+echo ""
 sleep 5
 
 clear
 echo ""
-echo "Get docker script"
+echo "05/11 - Get docker script"
 echo ""
 sleep 2
 curl -fsSL https://get.docker.com -o get-docker.sh
 echo ""
-echo "Get docker script - successful"
+echo "05/11 - Get docker script - successful"
+echo ""
 sleep 5
 
 clear
 echo ""
-echo "Run docker script"
+echo "06/11 - Run docker script"
 echo ""
 sleep 2
 sudo sh get-docker.sh
 echo ""
-echo "Run docker script - successful"
+echo "06/11 - Run docker script - successful"
+echo ""
 sleep 5
 
 # Install docker.compose
 # Make some update to get the latest version
 clear
 echo ""
-echo "Get docker-compose version 1.24.7"
+echo "07/11 - Get docker-compose version 1.24.7"
 echo ""
 sleep 2
 sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 echo ""
-echo "Get docker-compose - successful"
+echo "07/11 - Get docker-compose - successful"
+echo ""
 sleep 5
 
 clear
 echo ""
-echo "Give docker-compose +x rights"
+echo "08/11 - Give docker-compose +x rights"
 echo ""
 sleep 2
 sudo chmod +x /usr/local/bin/docker-compose
 echo ""
-echo "Give docker-compose +x rights - successful"
+echo "08/11 - Give docker-compose +x rights - successful"
+echo ""
 sleep 5
 
 clear
 echo ""
-echo "Verify docker-compose version"
+echo "09/11 - Verify docker-compose version"
 echo ""
 sleep 2
 docker-compose --version
 echo ""
-echo "Verify docker-compose version - successful"
+echo "09/11 - Verify docker-compose version - successful"
+echo ""
 sleep 5
 
 # Install portainer
 clear
 echo ""
-echo "Create Portainer Volume"
+echo "10/11 - Create Portainer Volume"
 echo ""
 sleep 2
 docker volume create portainer_data
 echo ""
-echo "Create Portainer Volume - successful"
+echo "10/11 - Create Portainer Volume - successful"
 sleep 5
 
 clear
 echo ""
-echo "Install Portainer"
+echo "11/11 - Install Portainer"
 echo ""
 sleep 2
 docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
 echo ""
-echo "Install Portainer - successful"
+echo "11/11 - Install Portainer - successful"
+echo ""
 sleep 5
 echo ""
 echo "Script successfully executed"
+echo ""
+echo "Access Portainer on xxx.xxx.xxx.xxx:9000"
+echo ""
