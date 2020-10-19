@@ -129,5 +129,5 @@ sleep 5
 echo ""
 echo "Script successfully executed"
 echo ""
-echo "Access Portainer on xxx.xxx.xxx.xxx:9000"
+hostname -I | cut -d' ' -f2 | echo "Access Portainer on xxx.xxx.xxx.xxx:9000"
 echo ""
