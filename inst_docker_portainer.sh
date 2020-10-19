@@ -129,5 +129,6 @@ sleep 5
 echo ""
 echo "Script successfully executed"
 echo ""
-hostname -I | cut -d' ' -f2 | echo "Access Portainer on xxx.xxx.xxx.xxx:9000"
+IP=`hostname -I | cut -d' ' -f2`
+echo "You can now access Portainer on " $IP":9000"
 echo ""
